@@ -1,97 +1,64 @@
-package Lab;
+package Assignment7;
+import java.io.Serializable;
 
-import java.util.Scanner;
+public class Student implements Serializable {
+        private int id;
+        private String name;
+        private byte age;
+        private String address;
+        /* điểm trung bình của sinh viên */
+        private float gpa;
 
-public class Student {
-    public int StudentCode;
-    public double SumPoint;
-    public int age;
-    public String ClassName;
+        public Student() {
+        }
 
-    /**
-     * Constructor
-     */
-    public Student() {
-    }
-    public Student (int StudentCode, double SumPoint, int age , String ClassName) {
-        this.StudentCode = StudentCode;
-        this.SumPoint = SumPoint;
-        this.age = age ;
-        this.ClassName= ClassName;
-    }
-    /**
-     * Getter and Setter
-     */
-    public int getStudentCode() {
-        return StudentCode;
-    }
+        public Student(int id, String name, byte age,
+                       String address, float gpa) {
+            super();
+            this.id = id;
+            this.name = name;
+            this.age = age;
+            this.address = address;
+            this.gpa = gpa;
+        }
 
-    public void setStudentCode(int studentCode) {
-        StudentCode = studentCode;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public double getSumPoint() {
-        return SumPoint;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setSumPoint(double sumPoint) {
-        SumPoint = sumPoint;
-    }
+        public String getName() {
+            return name;
+        }
 
-    public int getAge() {
-        return age;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+        public byte getAge() {
+            return age;
+        }
 
-    public String getClassName() {
-        return ClassName;
-    }
+        public void setAge(byte age) {
+            this.age = age;
+        }
 
-    public void setClassName(String className) {
-        ClassName = className;
-    }
+        public String getAddress() {
+            return address;
+        }
 
-    /**
-     * Nhập thông tin từ bàn phím
-     */
-    public void InputInfo() {
-        Scanner scanner = new Scanner(System.in);
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
-        System.out.println("Nhap ma sinh vien: ");
-        this.setStudentCode(scanner.hasNextInt()?scanner.nextInt():1);
+        public float getGpa() {
+            return gpa;
+        }
 
-        System.out.println("Nhap tuoi: ");
-        this.setAge(scanner.hasNextInt()?scanner.nextInt():18);
-
-        System.out.println("Nhap diem trung bình: ");
-        this.setSumPoint(scanner.hasNextDouble()?scanner.nextDouble():0);
-        scanner.nextLine();
-        System.out.println("Nhap ten lop: ");
-        this.setClassName(scanner.hasNextLine()?scanner.nextLine():"");
-    }
-    /**
-     * Show Student Info
-     */
-    public void showInfo(){
-        System.out.println("ma sinh vien: "+this.getStudentCode()+"  "+"Lop: "+this.getClassName()+"  "+"Tuoi"+this.getAge()+"  "+"Diem trung binh"+this.SumPoint);
-    }
-    public void checkReward(){
-        if (this.getSumPoint() > 8){
-            System.out.println("Sinh Vien Dat Hoc Bong");
-            return;
-        }else
-        System.out.println("Sinh Vien khong dat hoc bong");
-
-    }
-
-    public static void main(String[] args) {
-        Student student=new Student();
-        student.InputInfo();
-        student.showInfo();
-        student.checkReward();
-        System.out.println(student.getClassName() + 1 );
-    }
+        public void setGpa(float gpa) {
+            this.gpa = gpa;
+        }
 }

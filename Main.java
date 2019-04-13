@@ -1,14 +1,14 @@
-package sample;
+package Lab_Session3;
 
 public class Main {
     public static void main(String[] args) {
-        PersonModel<student> studentPersonModel = new PersonModel<>();
-        studentPersonModel.add(new student(1, 18, " Kiên"));
-        studentPersonModel.add(new student(2, 19, " Công"));
-        studentPersonModel.input();
-        PersonModel<Employee> employeePersonModel = new PersonModel<>();
-        employeePersonModel.add(new Employee(3, 20.0000, " Dân"));
-        employeePersonModel.add(new Employee(4, 30.000, " Giang"));
-        employeePersonModel.input();
+        Thread s1 = new Thread();
+        s1.setName("myJavaThread");
+        System.out.println(s1.getName());
+        s1.start();
+
+        MyThread n1 = new MyThread();
+        n1.start();
+
     }
 }

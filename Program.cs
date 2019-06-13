@@ -1,101 +1,86 @@
-﻿using System;
+using System;
+using System.Collections;
 
-namespace demoStudent
+namespace PRATICAL
 {
-    internal class Program
-    {
-        public static void Main(string[] args)
+    class Program {
+    public  static void Main(string[] args)
         {
-            Student st = new Student();
-            st.inputInfo();
-            st.ShowInfo();
-            st.Scholarship();
+            bool running = true;
+            int choosed ;
+            mainAction aciton = new mainAction();
+            while (running)
+            {
+                Console.WriteLine("Enter Number 1-4: ");
+                Console.WriteLine("1: Add New Contact");
+                Console.WriteLine("2: Find A Contact By Name");
+                Console.WriteLine("3: Display All Contact");
+                Console.WriteLine("4: Exit Program \n");
+                try {
+                    String choosedS = Console.ReadLine();
+                    choosed = Int32.Parse(choosedS); 
+                } catch(FormatException){
+                    Console.WriteLine("only number in beetwen 1 and 4!");
+                    continue;
+                }
+                
+
+                switch(choosed){
+                    case 1 :
+                        aciton.AddContact();
+                        break;
+                    case 2 :
+                        aciton.findByName();
+                        break;
+                    case 3 :
+                        aciton.displayContact();
+                        break;
+                    case 4 :
+                        running = false;
+                        break;
+                    default :
+                        Console.WriteLine("Unaccpeted input ");
+                        break;
+                }
+            }
+
         }
     }
 
-    class Student
+    class mainAction
     {
-        private String StudentId;
-        private int SumPoint;
-        private int age;
-        private string Class;
-
-        
-
-        public Student()
+        Hashtable contactTable= new Hashtable();
+        public mainAction()
         {
         }
 
-        public string Id
-        {
-            get { return StudentId; }
-            set { StudentId = value; }
+        public void AddContact(){
+            Console.WriteLine("enter name: ");
+            String conTactName = Console.ReadLine();
+            Console.WriteLine("enter phoneNumber: ");
+            String phoneNumber = Console.ReadLine();
+            this.contactTable.Add(conTactName,phoneNumber);
         }
-
-        public int Avange
-        {
-            get
-            {return SumPoint;
-            }
-            set  {
-            SumPoint = value;
-        }
-        }
-
-        public int Age
-        {
-            get
+        public void findByName(){
+            Console.Write("Enter the name you want to find:  ");
+            String conTactName = Console.ReadLine();
+            if (this.contactTable.ContainsKey(conTactName))
             {
-               return age;
-            }
-            set { age = value; }
-        }
-
-        public string ClassId
-        {
-            get { return Class; }
-            set { Class = value; }
-        }
-
-        public void inputInfo()
-        {
-            Console.Write("nhap vao ID: ");
-            StudentId = Convert.ToString(Console.ReadLine());
-            
-            Console.Write("nhap vao diem trung binh: ");
-            SumPoint = Convert.ToInt32(Console.ReadLine());
-            
-            Console.Write("nhap vao tuoi: ");
-            age = Convert.ToInt32(Console.ReadLine());
-            
-            Console.Write("nhap vao lop: ");
-            Class = Convert.ToString(Console.ReadLine());
-
-        }
-
-        public void ShowInfo()
-        {
-            Console.WriteLine("Thong tin hoc sinh: ");
-            Console.WriteLine("ID: "+StudentId);
-            Console.WriteLine("----------------");
-            Console.WriteLine("SumPoint:"+SumPoint);
-            Console.WriteLine("----------------");
-            Console.WriteLine("age:"+age);
-            Console.WriteLine("----------------");
-            Console.WriteLine("class:"+Class);
-        }
-
-        public void Scholarship()
-        {
-            if (SumPoint>=8.0)
-            {
-                Console.WriteLine("hoc sinh ID:"+StudentId+" dat hoc bong");
-
+                Console.WriteLine(conTactName + ": "+this.contactTable[conTactName]);
             }
             else
             {
-                Console.WriteLine("hoc sinh khong dat hoc bong");
+                Console.WriteLine("not found this user");
             }
+        }
+        public void displayContact(){
+            ICollection key = this.contactTable.Keys;
+
+            foreach (string k in key)
+            {
+                Console.WriteLine(k + ": " + this.contactTable[k]);
+            }
+
         }
     }
 }
